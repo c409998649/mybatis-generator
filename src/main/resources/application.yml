@@ -1,0 +1,17 @@
+spring:
+  profiles:
+    active: dev
+  #上传文件大小
+  servlet:
+    multipart:
+      max-request-size: 1000MB
+      max-file-size: 1000MB
+
+# mybatis配置
+# 配置映射类所在包名
+mybatis:
+  type-aliases-package: com.chen.mybatis.entity
+
+
+logging:
+  level.com.chen.mybatis: DEBUG
