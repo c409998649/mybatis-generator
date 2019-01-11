@@ -2,9 +2,10 @@ package com.chen.mybatis.controller;
 
 import com.chen.mybatis.entity.User;
 import com.chen.mybatis.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
@@ -17,6 +18,7 @@ import java.util.List;
  **/
 @Controller
 @RequestMapping("/user")
+@Slf4j
 public class UserController {
 
     @Resource
@@ -32,9 +34,13 @@ public class UserController {
      * @date 19-1-11
      * @since
      **/
-    @RequestMapping(value = "/userList", method = RequestMethod.POST)
+    @PostMapping(value = "/userList")
     @ResponseBody
     public List<User> userList(String userName){
-        return userService.queryUserList(userName);
+        log.info("UserController执行方法1");
+        List<User> users = userService.queryUserList(userName);
+        userService.asyncMessage();
+        log.info("UserController执行方法3");
+        return users;
     }
 }

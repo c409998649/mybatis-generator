@@ -4,6 +4,8 @@ import com.chen.mybatis.dao.mapper.UserMapper;
 import com.chen.mybatis.entity.User;
 import com.chen.mybatis.entity.UserExample;
 import com.chen.mybatis.service.UserService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -15,6 +17,7 @@ import java.util.List;
  * @date 2019-01-11 上午10:01
  **/
 @Service
+@Slf4j
 public class UserServiceImpl implements UserService {
 
     @Resource
@@ -26,5 +29,11 @@ public class UserServiceImpl implements UserService {
         userExample.or().andUserNameLike('%'+userName+'%');
         List<User> users = userMapper.selectByExample(userExample);
         return users;
+    }
+
+    @Override
+    @Async
+    public void asyncMessage() {
+        log.info("UserController执行方法2");
     }
 }
