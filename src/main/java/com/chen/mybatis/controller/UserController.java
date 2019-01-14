@@ -27,12 +27,12 @@ public class UserController {
     /**
      * 查询用户权限
      *
-     * @param userName 用户名称
-     * @return
-     * @title
+     * @param userName
+     * @return java.util.List<com.chen.mybatis.entity.User>
+     * @title <一句话说明功能>
      * @author chenzhiying@zbj.com
      * @date 19-1-11
-     * @since
+     * @since <版本号>
      **/
     @PostMapping(value = "/userList")
     @ResponseBody
