@@ -16,7 +16,7 @@ import java.util.Properties;
 /**
  * mybatis generator 自定义comment生成器.
  *
- * @author chenzhiying@zbj.com
+ * @author 陈智颖
  * @title
  * @date 2019-01-10 下午2:42
  **/
@@ -37,7 +37,7 @@ public class MySQLCommentGenerator extends EmptyCommentGenerator {
     @Override
     public void addModelClassComment(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
 
-        String author = "chenzhiying@zbj.com";
+        String author = "陈智颖";
         String dateFormat = properties.getProperty("dateFormat", "yyyy-MM-dd HH:mm:ss");
         SimpleDateFormat dateFormatter = new SimpleDateFormat(dateFormat);
 

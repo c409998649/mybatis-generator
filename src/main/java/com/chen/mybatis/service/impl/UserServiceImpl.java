@@ -12,7 +12,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * @author chenzhiying@zbj.com
+ * @author 陈智颖
  * @title
  * @date 2019-01-11 上午10:01
  **/
@@ -24,9 +24,9 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public List<User> queryUserList(String userName) {
+    public List<User> queryUserList(String name) {
         UserExample userExample = new UserExample();
-        userExample.or().andUserNameLike('%'+userName+'%');
+        userExample.or().andNameLike('%'+name+'%');
         List<User> users = userMapper.selectByExample(userExample);
         return users;
     }

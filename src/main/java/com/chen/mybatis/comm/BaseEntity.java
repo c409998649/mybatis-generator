@@ -3,7 +3,7 @@ package com.chen.mybatis.comm;
 /**
  * 模板生成注解
  *
- * @author chenzhiying@zbj.com
+ * @author 陈智颖
  * @title
  * @date 2019-01-10 下午2:50
  **/

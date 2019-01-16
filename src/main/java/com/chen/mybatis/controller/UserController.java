@@ -12,7 +12,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * @author chenzhiying@zbj.com
+ * @author 陈智颖
  * @title
  * @date 2019-01-11 上午10:05
  **/
@@ -27,18 +27,18 @@ public class UserController {
     /**
      * 查询用户权限
      *
-     * @param userName
+     * @param name
      * @return java.util.List<com.chen.mybatis.entity.User>
      * @title <一句话说明功能>
-     * @author chenzhiying@zbj.com
+     * @author 陈智颖
      * @date 19-1-11
      * @since <版本号>
      **/
-    @PostMapping(value = "/userList")
+    @RequestMapping(value = "/userList")
     @ResponseBody
-    public List<User> userList(String userName){
+    public List<User> userList(String name){
         log.info("UserController执行方法1");
-        List<User> users = userService.queryUserList(userName);
+        List<User> users = userService.queryUserList(name);
         userService.asyncMessage();
         log.info("UserController执行方法3");
         return users;

@@ -2,12 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chen.mybatis.dao.mapper.UserMapper">
   <resultMap id="BaseResultMap" type="com.chen.mybatis.entity.User">
-    <id column="user_id" jdbcType="INTEGER" property="userId" />
-    <result column="user_name" jdbcType="VARCHAR" property="userName" />
-    <result column="user_phone" jdbcType="VARCHAR" property="userPhone" />
-    <result column="user_sex" jdbcType="INTEGER" property="userSex" />
-    <result column="user_create_time" jdbcType="TIMESTAMP" property="userCreateTime" />
-    <result column="version" jdbcType="INTEGER" property="version" />
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -68,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    user_id, user_name, user_phone, user_sex, user_create_time, version
+    id, name, age, create_time
   </sql>
   <select id="selectByExample" parameterType="com.chen.mybatis.entity.UserExample" resultMap="BaseResultMap">
     select
@@ -89,11 +87,11 @@
     select 'true' as QUERYID,
     <include refid="Base_Column_List" />
     from user
-    where user_id = #{userId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user
-    where user_id = #{userId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.chen.mybatis.entity.UserExample">
     delete from user
@@ -102,53 +100,39 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.chen.mybatis.entity.User">
-    insert into user (user_id, user_name, user_phone, 
-      user_sex, user_create_time, version
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into user (name, age, create_time
       )
-    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR}, 
-      #{userSex,jdbcType=INTEGER}, #{userCreateTime,jdbcType=TIMESTAMP}, #{version,jdbcType=INTEGER}
+    values (#{name,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.chen.mybatis.entity.User">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="userId != null">
-        user_id,
+      <if test="name != null">
+        name,
       </if>
-      <if test="userName != null">
-        user_name,
+      <if test="age != null">
+        age,
       </if>
-      <if test="userPhone != null">
-        user_phone,
-      </if>
-      <if test="userSex != null">
-        user_sex,
-      </if>
-      <if test="userCreateTime != null">
-        user_create_time,
-      </if>
-      <if test="version != null">
-        version,
+      <if test="createTime != null">
+        create_time,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="userId != null">
-        #{userId,jdbcType=INTEGER},
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
       </if>
-      <if test="userName != null">
-        #{userName,jdbcType=VARCHAR},
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
       </if>
-      <if test="userPhone != null">
-        #{userPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="userSex != null">
-        #{userSex,jdbcType=INTEGER},
-      </if>
-      <if test="userCreateTime != null">
-        #{userCreateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="version != null">
-        #{version,jdbcType=INTEGER},
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -161,23 +145,17 @@
   <update id="updateByExampleSelective" parameterType="map">
     update user
     <set>
-      <if test="record.userId != null">
-        user_id = #{record.userId,jdbcType=INTEGER},
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.userName != null">
-        user_name = #{record.userName,jdbcType=VARCHAR},
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.userPhone != null">
-        user_phone = #{record.userPhone,jdbcType=VARCHAR},
+      <if test="record.age != null">
+        age = #{record.age,jdbcType=INTEGER},
       </if>
-      <if test="record.userSex != null">
-        user_sex = #{record.userSex,jdbcType=INTEGER},
-      </if>
-      <if test="record.userCreateTime != null">
-        user_create_time = #{record.userCreateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.version != null">
-        version = #{record.version,jdbcType=INTEGER},
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     <if test="_parameter != null">
@@ -186,12 +164,10 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update user
-    set user_id = #{record.userId,jdbcType=INTEGER},
-      user_name = #{record.userName,jdbcType=VARCHAR},
-      user_phone = #{record.userPhone,jdbcType=VARCHAR},
-      user_sex = #{record.userSex,jdbcType=INTEGER},
-      user_create_time = #{record.userCreateTime,jdbcType=TIMESTAMP},
-      version = #{record.version,jdbcType=INTEGER}
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      age = #{record.age,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -199,31 +175,23 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.chen.mybatis.entity.User">
     update user
     <set>
-      <if test="userName != null">
-        user_name = #{userName,jdbcType=VARCHAR},
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="userPhone != null">
-        user_phone = #{userPhone,jdbcType=VARCHAR},
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
       </if>
-      <if test="userSex != null">
-        user_sex = #{userSex,jdbcType=INTEGER},
-      </if>
-      <if test="userCreateTime != null">
-        user_create_time = #{userCreateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="version != null">
-        version = #{version,jdbcType=INTEGER},
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where user_id = #{userId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.chen.mybatis.entity.User">
     update user
-    set user_name = #{userName,jdbcType=VARCHAR},
-      user_phone = #{userPhone,jdbcType=VARCHAR},
-      user_sex = #{userSex,jdbcType=INTEGER},
-      user_create_time = #{userCreateTime,jdbcType=TIMESTAMP},
-      version = #{version,jdbcType=INTEGER}
-    where user_id = #{userId,jdbcType=INTEGER}
+    set name = #{name,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

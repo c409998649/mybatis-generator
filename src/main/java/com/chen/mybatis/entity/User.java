@@ -7,28 +7,21 @@ import lombok.Data;
 /**
  * 
  * user
- * @author chenzhiying@zbj.com
- * @date 2019-01-11 09:54:44
+ * @author 陈智颖
+ * @date 2019-01-16 11:15:04
  */
 @Data
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    // 用户编码
-    private Integer userId;
+    private Integer id;
 
-    // 用户名称
-    private String userName;
+    // 姓名
+    private String name;
 
-    // 用户电话
-    private String userPhone;
-
-    // 用户性别 1:男 2:女
-    private Integer userSex;
+    // 年龄
+    private Integer age;
 
     // 创建时间
-    private Date userCreateTime;
-
-    // 版本
-    private Integer version;
+    private Date createTime;
 }

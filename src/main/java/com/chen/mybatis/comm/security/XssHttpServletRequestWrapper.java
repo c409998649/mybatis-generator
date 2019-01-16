@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 /**
  * http封装
  *
- * @author chenzhiying@zbj.com
+ * @author 陈智颖
  * @title <一句话说明功能>
  * @date 2019-01-14 上午11:19
  **/

@@ -4,7 +4,7 @@ spring:
     mydata:
       driverClassName: com.mysql.jdbc.Driver
       name: mydata
-      url: jdbc:mysql://192.168.195.143:3306/user?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull&amp;tinyInt1isBit=false&amp;useSSL=false
+      url: jdbc:mysql://192.168.195.143:3306/test?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull&amp;tinyInt1isBit=false&amp;useSSL=false
       username: root
       password: tiger
     druid:

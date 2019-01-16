@@ -134,7 +134,7 @@ public class DruidConfig {
 
 
     private static final int TX_METHOD_TIMEOUT = 50000;
-    private static final String AOP_POINTCUT_EXPRESSION = "execution (* com.chen.myproject..service..*.*(..))";
+    private static final String AOP_POINTCUT_EXPRESSION = "execution (* com.chen.mybatis..service..*.*(..))";
 
     // 事务的实现Advice
     @Bean

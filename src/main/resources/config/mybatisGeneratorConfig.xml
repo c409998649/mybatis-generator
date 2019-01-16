@@ -5,7 +5,7 @@
 
 <generatorConfiguration>
     <!--导入属性配置-->
-    <properties resource="application.yml"/>
+    <properties resource="config/jdbc.properties"/>
 
     <!--指定特定数据库的jdbc驱动jar包的位置-->
     <!--<classPathEntry location="${jdbc.driverLocation}"/>-->
@@ -29,10 +29,10 @@
 
         <!--jdbc的数据库连接 -->
         <jdbcConnection
-                driverClass="com.mysql.jdbc.Driver"
-                connectionURL="jdbc:mysql://192.168.195.143:3306/user?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull&amp;tinyInt1isBit=false&amp;useSSL=false"
-                userId="root"
-                password="tiger">
+                driverClass="${spring.datasource.driverClassName}"
+                connectionURL="${spring.datasource.url}"
+                userId="${spring.datasource.username}"
+                password="${spring.datasource.password}">
         </jdbcConnection>
 
 
@@ -64,7 +64,8 @@
         <!--tableName:指定了表名
             domainObjectName:指定了实体类的名称
         -->
-        <table tableName="user" domainObjectName="User"
+        <!-- 全部生成 -->
+        <table tableName="%"
                selectByPrimaryKeyQueryId="true"
                selectByExampleQueryId="true"
                enableSelectByExample="true" enableCountByExample="true"
@@ -72,7 +73,15 @@
             <property name="useActualColumnNames" value="false"/>
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
-
-
+        <!-- 单表 -->
+        <!--<table tableName="test" domainObjectName="Test"
+               selectByPrimaryKeyQueryId="true"
+               selectByExampleQueryId="true"
+               enableSelectByExample="true" enableCountByExample="true"
+               enableUpdateByExample="true" enableDeleteByExample="true">
+            <property name="useActualColumnNames" value="false"/>
+            &lt;!&ndash; 主键自增长 &ndash;&gt;
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>-->
     </context>
 </generatorConfiguration>
